@@ -6,9 +6,10 @@ class Solution(object):
         """
         row = map(max, grid)
         col = map(max, zip(*grid))
-        sum_ = sum(min(i, j) for i in row for j in col)
+        after_increase = sum(min(i, j) for i in row for j in col)
         original = sum(map(sum, grid))
+
+        return after_increase - original
         
-        return sum_ - original
-        
+       
         
