@@ -15,3 +15,21 @@ class Solution(object):
                     count += 1
         return rtn
 # Time Limit Exceed
+
+class Solution(object):
+    def dailyTemperatures(self, T):
+        """
+        :type T: List[int]
+        :rtype: List[int]
+        """
+        ans = [0] * len(T)
+        stack = []
+        
+        for index, val in enumerate(T):
+            while stack and T[stack[-1]] < val:
+                cur = stack.pop()
+                ans[cur] = index - cur
+            stack.append(index)
+                
+        return ans
+# USE Stack
