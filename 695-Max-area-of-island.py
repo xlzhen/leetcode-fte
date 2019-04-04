@@ -4,25 +4,16 @@ class Solution(object):
         :type grid: List[List[int]]
         :rtype: int
         """
-        def dfs(i,j,grid):
-    
-            if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[i]) or grid[i][j] == 0:
+        def dfs(i, j, grid):
+            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[i]) or grid[i][j] == 0:
                 return 0
-    
             grid[i][j] = 0
-    
-            up = dfs(i,j+1,grid)
-            down = dfs(i,j-1,grid)
-            left = dfs(i-1,j,grid)
-            right = dfs(i+1,j,grid)
-    
-            return up + down + left + right + 1
-
-        count = 0
+            return dfs(i, j+1, grid) + dfs(i+1, j, grid) + dfs(i-1,j,grid) + dfs(i,j-1,grid) + 1
+                
         
+        count = 0
         for i in range(len(grid)):
             for j in range(len(grid[i])):
-                if grid[i][j] == 1:
-                    count = max(dfs(i,j,grid), count)
+                count = max(count, dfs(i,j,grid))
                     
         return count
