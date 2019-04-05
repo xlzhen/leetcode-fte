@@ -22,14 +22,14 @@ class Solution(object):
         :type T: List[int]
         :rtype: List[int]
         """
-        ans = [0] * len(T)
+        rtn = [0 for i in range(len(T))]
         stack = []
-        
-        for index, val in enumerate(T):
-            while stack and T[stack[-1]] < val:
-                cur = stack.pop()
-                ans[cur] = index - cur
-            stack.append(index)
-                
-        return ans
+        for i in range(len(T)):
+            while stack and T[i] > stack[-1][1]:
+                index, val = stack.pop()
+                rtn[index] = i - index
+            stack.append((i, T[i]))
+        return rtn
+            
+            
 # USE Stack
