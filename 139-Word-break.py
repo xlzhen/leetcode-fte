@@ -5,12 +5,13 @@ class Solution(object):
         :type wordDict: Set[str]
         :rtype: bool
         """
-        dp = [False] * (len(s) + 1) # dp[i] means s[:i+1] can be segmented into words in the wordDicts 
-        dp[0] = True
-        for i in range(len(s)):
-            if dp[i]:
-                for j in range(i, len(s)):
-                    if s[i: j+1] in wordDict:
-                        dp[j+1] = True
-                    
-        return dp[-1]
+        n=len(s)
+        f=[False for i in range(n+1)]
+        f[0]=True
+        for i in range(n):
+            if f[i]:
+                for j in wordDict:
+                    l=len(j)
+                    if i+l<=n and s[i:i+l]==j:
+                        f[i+l]=True
+        return f[n]
