@@ -13,7 +13,7 @@ class Solution:
         while stack:
             node = stack.pop()
             if node:
-                # pre-order, right first
+                # pre-order, left first
                 traversal.append(node.val)
                 stack.append(node.right)
                 stack.append(node.left)
