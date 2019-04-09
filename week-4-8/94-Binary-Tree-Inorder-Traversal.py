@@ -5,24 +5,21 @@
 #         self.left = None
 #         self.right = None
 
+# Iterative
+
 class Solution(object):
     def inorderTraversal(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
         """
-        path = []
-        def inorder(root):
-            if not root:
-                return 
-            if root.left:
-                inorder(root.left)
-            path.extend([root.val])
-            if root.right:
-                inorder(root.right)
-        inorder(root)
-        return path
-        
- # https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
- 
- 
+        res, stack = [], []
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+            if not stack:
+                return res
+            node = stack.pop()
+            res.append(node.val)
+            root = node.right
